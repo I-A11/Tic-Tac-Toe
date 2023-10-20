@@ -12,25 +12,15 @@
   height: 100vh;
 }
 
-.board-rows {
-}
-
 .square {
   width: 4rem;
   height: 4rem;
   font-size: 1.9rem;
   background: none;
   border: solid 2px gray;
-  border-bottom: none;
-  border-right: none;
   text-align: center;
   font-weight: bold;
-}
-
-.last {
-  border-right: solid 2px gray;
-}
-
-.bottom {
-  border-bottom: solid 2px gray;
+  float: left;
+  margin-right: -1px;
+  margin-top: -1px;
 }
