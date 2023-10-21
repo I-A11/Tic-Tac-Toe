@@ -1,23 +1,9 @@
-import Square from "./component/Square";
+import Board from "./component/Board";
 
 function App() {
   return (
     <div className="app">
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
+      <Board />
     </div>
   );
 }
