@@ -3,6 +3,7 @@ import Square from "./Square";
 
 const Board = () => {
   const [xIsNext, setXIsNext] = useState(true);
+  const [refresh, setRefresh] = useState(false);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   const handleClick = (i) => {
@@ -52,9 +53,17 @@ const Board = () => {
     displayWinner = `Next player is: ${xIsNext ? "X" : "O"}`;
   }
 
+  const handleRefresh = () => {
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
+  };
+
   return (
     <div>
       <div className="display-winner">{displayWinner}</div>
+      <button className="refresh-btn" onClick={handleRefresh}>
+        Refresh
+      </button>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
