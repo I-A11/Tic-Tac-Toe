@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Square from "./Square";
 
 const Board = () => {
+  let scoreX = 0;
+  let scoreO = 0;
   const [xIsNext, setXIsNext] = useState(true);
-  const [refresh, setRefresh] = useState(false);
+  const [xScore, setXScore] = useState(scoreX);
+  const [oScore, setOScore] = useState(scoreO);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   const handleClick = (i) => {
@@ -34,11 +37,17 @@ const Board = () => {
 
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
+
       if (
         squares[a] &&
         squares[a] === squares[b] &&
         squares[a] === squares[c]
       ) {
+        if (squares[a] === "X") {
+          scoreX++;
+        } else if (squares[a] === "O") {
+          scoreO++;
+        }
         return squares[a];
       }
     }
@@ -50,6 +59,9 @@ const Board = () => {
   };
 
   const winner = calculateWinner(squares);
+
+  // console.log("score X is", scoreX);
+  // console.log("score O is", scoreO);
   let displayWinner;
 
   if (winner) {
@@ -68,6 +80,8 @@ const Board = () => {
   return (
     <div>
       <div className="display-winner">{displayWinner}</div>
+      <div className="display-winner">X player score is: {scoreX}</div>
+      <div className="display-winner">O player score is: {scoreO}</div>
       <button className="refresh-btn" onClick={handleRefresh}>
         Refresh
       </button>
