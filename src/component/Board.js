@@ -45,10 +45,17 @@ const Board = () => {
     return null;
   };
 
+  const tryAgain = () => {
+    return squares.some((arrValue) => arrValue === null);
+  };
+
   const winner = calculateWinner(squares);
   let displayWinner;
+
   if (winner) {
     displayWinner = `Winner is : ${winner}`;
+  } else if (tryAgain() === false) {
+    displayWinner = "Game over try again to win.";
   } else {
     displayWinner = `Next player is: ${xIsNext ? "X" : "O"}`;
   }
