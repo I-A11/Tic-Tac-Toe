@@ -5,9 +5,9 @@ const Board = () => {
   let scoreX = 0;
   let scoreO = 0;
   const [xIsNext, setXIsNext] = useState(true);
-  const [xScore, setXScore] = useState(scoreX);
-  const [oScore, setOScore] = useState(scoreO);
   const [squares, setSquares] = useState(Array(9).fill(null));
+
+  const result = {};
 
   const handleClick = (i) => {
     if (squares[i] || calculateWinner(squares)) {
@@ -45,8 +45,10 @@ const Board = () => {
       ) {
         if (squares[a] === "X") {
           scoreX++;
+          result.xResult = scoreX;
         } else if (squares[a] === "O") {
           scoreO++;
+          result.oResult = scoreO;
         }
         return squares[a];
       }
@@ -54,14 +56,14 @@ const Board = () => {
     return null;
   };
 
+  // console.log(result.xResult);
+
   const tryAgain = () => {
     return squares.some((arrValue) => arrValue === null);
   };
 
   const winner = calculateWinner(squares);
 
-  // console.log("score X is", scoreX);
-  // console.log("score O is", scoreO);
   let displayWinner;
 
   if (winner) {
